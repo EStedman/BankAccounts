@@ -12,27 +12,47 @@ import java.util.GregorianCalendar;
  **********************************************************************/
 
 public class CheckingAccount extends Account {
-	/**  */
+	
+	/** represents the account for the bank */
 	private String accountNum;
-	/**  */
+	
+	/** represents the account holder */
 	private String accountOwner;
-	/**  */
-	private GregorianCalendar date;
-	/**  */
+	
+	/** holds the type checking */
 	private String type;
-	/**  */
+	
+	/** holds the date of the transaction */
+	private GregorianCalendar date;
+	
+	/** the current dollar value of the account */
 	private double balance;
-    /**  */
+    
+	/** the value of the fee for a certain checking account */
     private double monthlyFee;
-	/**  */
+	
+    /** used to enforce serializable */
     private static final long serialVersionUID = 1L;
    
+    /**
+     * Constructor that Initializes an account with arbitrary values
+     */
 	public CheckingAccount() {
+		accountNum = "000";
+		accountOwner = "N/A";
+		date = new GregorianCalendar(01,01,1990);
+		balance = 0;
+		monthlyFee = 0;
 		
 	}
  
     /*******************************************************************
-     * 
+     * Constructor allows for the creation of purposed checking account
+     * @param accountNum a given string for the account title
+     * @param accountOwner string to represent the account holder
+     * @param balance a double to hold the initialized value'
+     * @param fee the monthly fee an account has to pay
+     * @param date an acceptable date on the calendar
      ******************************************************************/
 	public CheckingAccount(String accountNum,
 			String accountOwner,
@@ -49,17 +69,45 @@ public class CheckingAccount extends Account {
 		
 	}
 	
-	@Override
+	/*******************************************************************
+	 * @param balance the current/initial balance of the account
+	 ******************************************************************/
+	public void setbalance(double balance) {
+		this.balance = balance;
+	}
+	
+	/*******************************************************************
+	 * @return the current balance
+	 ******************************************************************/
 	public double getBalance() {
 		return balance;
 	}
 	
-	@Override
+	/*******************************************************************
+	 * @param accountNum is the current accounts I.D.
+	 ******************************************************************/
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
+	}
+	
+	/*******************************************************************
+	 * @return accountNum is the current accounts number for the bank to
+	 * know
+	 ******************************************************************/
 	public String getAccountNum() {
 		return accountNum;
 	}
 	
-	@Override
+	/*******************************************************************
+	 * @param accountOwner is the person who owns the current account
+	 ******************************************************************/
+	public void setAccountOwner(String accountOwner) {
+		this.accountOwner = accountOwner;
+	}
+	
+	/*******************************************************************
+	 * @return the holder of the account
+	 ******************************************************************/
 	public String getAccountOwner() {
 		return accountOwner;
 	}
@@ -79,17 +127,23 @@ public class CheckingAccount extends Account {
 	}
 	
 	/*******************************************************************
-	 * 
+	 * @returns true if two checking accounts are equivalent and 
+	 * returns false if the accounts are not equal
 	 ******************************************************************/
-	public void equals(){
-		
+	/*public boolean equals(Account compAccount){
+		if(this.name == comparableTimer.hours && this.minutes == 
+				comparableTimer.minutes && this.seconds == 
+				comparableTimer.seconds)
+			return true;
+					
+		return false;
 	}
 	
 	/*******************************************************************
-	 * 
+	 * @return all of the account info as a single string
 	 ******************************************************************/
 	public String toString(){
-		return accountNum + ": " + accountOwner + ": " + 
-				toString(date) + ": " + type + ": " + balance;
+		return accountNum + ":" + accountOwner + ":" + 
+				toString(date) + ":" + type + ":" + balance;
 	}
 }
