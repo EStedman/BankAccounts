@@ -9,6 +9,11 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -136,6 +141,7 @@ public class BankGUI extends JPanel {
 				textFields[i] = new JTextField();
 			if (i < 10)
 				menus[i] = new JMenuItem();
+				menus[i].addActionListener(listener);
 		}
 
 		for (int i = 0; i < 10; ++i) {
@@ -300,6 +306,41 @@ public class BankGUI extends JPanel {
 					textFields[4].setEditable(true);
 					textFields[4].setText("");
 				}
+			}
+			if(e.getSource() == menus[0]){
+				bankModelClass.loadBinary();
+				
+			}
+			if(e.getSource() == menus[1]){
+				try {
+					bankModelClass.saveBinary();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			if(e.getSource() == menus[2]){
+				try {
+					bankModelClass.loadText("/Users/xxevanxx007/"
+					+ "git/BankAccounts/Project3/accountText.txt");
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			if(e.getSource() == menus[3]){
+				try {
+					bankModelClass.saveText("accountText.txt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
+			if(e.getSource() == menus[6]){
+				System.exit(0);
 			}
 		}
 	}

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /***********************************************************************
+ * This is where the account is created if it's savings
  * @author Evan Stedman
  * @author Hamilton Graham
  **********************************************************************/

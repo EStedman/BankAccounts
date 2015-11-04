@@ -1,12 +1,10 @@
-/**
- * 
- */
 package project3;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 /***********************************************************************
+ * This is where the account is created if it's checking
  * @author Evan Stedman
  * @author Hamilton Graham
  **********************************************************************/
@@ -130,12 +128,14 @@ public class CheckingAccount extends Account {
 	 * @returns true if two checking accounts are equivalent and 
 	 * returns false if the accounts are not equal
 	 ******************************************************************/
-	/*public boolean equals(Account compAccount){
-		if(this.name == comparableTimer.hours && this.minutes == 
-				comparableTimer.minutes && this.seconds == 
-				comparableTimer.seconds)
+	public boolean equals(Account compAccount){
+		if(this.accountNum == compAccount.getAccountNum() && 
+				this.accountOwner == compAccount.getAccountOwner() &&
+				this.balance == compAccount.getBalance() &&
+				this.date == compAccount.getDate() &&
+				this.monthlyFee == compAccount.getMonthlyFee())
 			return true;
-					
+
 		return false;
 	}
 	
