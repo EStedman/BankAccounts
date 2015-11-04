@@ -20,14 +20,12 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
-public class BankModel extends AbstractTableModel{
+public class BankModel extends DefaultTableModel{
 
 	/**  */
 	static ArrayList<Account> acts = new ArrayList<Account>();
-	private String col[] = {"Account Number",
-			"Account Owner",
-			"Balance",
-	"Information"};
+	private String col[] = {"Account Number","Account Owner","Balance",
+			"Information"};
 
 
 	/*******************************************************************
@@ -202,12 +200,12 @@ public class BankModel extends AbstractTableModel{
 								a).getMinBalance();
 			
 		}
-
 		return columnIndex;
 	}
 
 	/*******************************************************************
-	 * constructed a CheckingAccount and added it to an arraylist of accounts
+	 * constructed a CheckingAccount and added it to an arraylist of 
+	 * accounts
 	 ******************************************************************/
 	public void addChecking() {
 		GregorianCalendar date = new GregorianCalendar(
@@ -220,6 +218,7 @@ public class BankModel extends AbstractTableModel{
 				Double.parseDouble(BankGUI.getTextFields(3)),
 				date);
 		acts.add(a);
+		fireTableDataChanged();
 	}
 
 	/*******************************************************************
@@ -239,6 +238,7 @@ public class BankModel extends AbstractTableModel{
 		acts.add(a);
 		System.out.println(acts.get(acts.size()-1) + ": " + acts.size());
 		System.out.println(a.getAccountOwner());
+		fireTableDataChanged();
 	}
 
 
@@ -251,13 +251,40 @@ public class BankModel extends AbstractTableModel{
 	    acts.remove(row);
 	    fireTableRowsDeleted(row, row);
 	    getRowCount();
+	    fireTableDataChanged();
 	}
 
 	/*******************************************************************
 	 * 
 	 ******************************************************************/
-	public void update(Account a) {
-
+	public void update(int type, int row) {
+		if(type == 1){
+			GregorianCalendar date = new GregorianCalendar(
+					Integer.parseInt(BankGUI.getTextFields(8)),
+					Integer.parseInt(BankGUI.getTextFields(7)) - 1,
+					Integer.parseInt(BankGUI.getTextFields(6)));
+			Account b = new SavingsAccount(BankGUI.getTextFields(0),
+					BankGUI.getTextFields(1),
+					Double.parseDouble(BankGUI.getTextFields(2)),
+					Double.parseDouble(BankGUI.getTextFields(4)),
+					Double.parseDouble(BankGUI.getTextFields(5)),
+					date);
+			acts.set(row, b);
+			fireTableDataChanged();
+		}
+		else if(type == 2){
+			GregorianCalendar date = new GregorianCalendar(
+					Integer.parseInt(BankGUI.getTextFields(8)),
+					Integer.parseInt(BankGUI.getTextFields(7)) - 1,
+					Integer.parseInt(BankGUI.getTextFields(6)));
+			Account b = new CheckingAccount(BankGUI.getTextFields(0),
+					BankGUI.getTextFields(1),
+					Double.parseDouble(BankGUI.getTextFields(2)),
+					Double.parseDouble(BankGUI.getTextFields(3)),
+					date);
+			acts.set(row, b);
+			fireTableDataChanged();
+		}
 	}
 
 

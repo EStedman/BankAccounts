@@ -148,6 +148,9 @@ public class BankGUI extends JPanel {
 
 		textFields[5].setEditable(false);
 		textFields[5].setText("N/A");
+		
+		textFields[4].setEditable(false);
+		textFields[4].setText("N/A");
 
 		JRBGroup.add(checking);
 		JRBGroup.add(savings);
@@ -264,6 +267,12 @@ public class BankGUI extends JPanel {
 			}
 			else if (e.getSource() == buttons[2]) {
 				//update
+				if (BankModel.acts.size() > 0){
+					if(savings.isSelected() == true)
+						bankModelClass.update(1,table.getSelectedRow());
+					else if(checking.isSelected()== true)
+						bankModelClass.update(2,table.getSelectedRow());
+				}
 			}
 			else if (e.getSource() == buttons[3]) {
 				//clear

@@ -13,14 +13,19 @@ import java.util.GregorianCalendar;
 
 
 public abstract class Account implements Serializable {
+	
 	/**  */
 	private String accountNum;
+	
 	/**  */
 	private String accountOwner;
+	
 	/**  */
 	private GregorianCalendar date;
+	
 	/**  */
 	private String type;
+	
 	/**  */
 	private double balance;
 
@@ -30,49 +35,73 @@ public abstract class Account implements Serializable {
     /**  */
     private double monthlyFee;
  
+    /*******************************************************************
+	 * 
+	 ******************************************************************/
 	public Account (){
 		
 	}
 	
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public String getAccountNum() {
 		return accountNum;
 	}
 
-
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
 	}
 
-
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public String getAccountOwner() {
 		return accountOwner;
 	}
 
-
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public void setAccountOwner(String accountOwner) {
 		this.accountOwner = accountOwner;
 	}
 
-
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public GregorianCalendar getDate() {
 		return date;
 	}
 
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public String toString(GregorianCalendar date) {
 		 SimpleDateFormat formatter=new SimpleDateFormat("yyyy MM dd"); 
 		 return formatter.format(date.getTimeInMillis());
     }
 
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public void setDate(GregorianCalendar date) {
 		this.date = date;
 	}
 
-
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public double getBalance() {
 		return balance;
 	}
 
-
+	/*******************************************************************
+	 * 
+	 ******************************************************************/
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
